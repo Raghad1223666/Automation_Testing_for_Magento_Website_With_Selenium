@@ -31,25 +31,19 @@ public class Actions implements Constants {
 
 			switch (browserSelected) {
 			case "2":
+				System.out.println("Running code in the Edge browser...");
 				driver = new EdgeDriver();
 				break;
 
 			case "3":
+				System.out.println("Running code in the Firefox browser...");
 				driver = new FirefoxDriver();
 				break;
 			default:
+				System.out.println("Running code in the Chrome browser...");
 				driver = new ChromeDriver();
 				break;
 			}
-
-			if (browserSelected == "2") {
-				System.out.println("Running code in the: Edge browser");
-			} else if (browserSelected == "3") {
-				System.out.println("Running code in the: Firefox browser");
-			} else {
-				System.out.println("Running code in the: Chrome browser");
-			}
-
 		}
 	}
 
