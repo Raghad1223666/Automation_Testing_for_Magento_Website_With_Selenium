@@ -1,5 +1,6 @@
 package pageObjects;
 
+import java.util.List;
 import java.util.Random;
 
 import org.openqa.selenium.By;
@@ -24,6 +25,13 @@ public class Actions extends extentReportClass implements Constants {
 		driver.findElement(By.id("search")).sendKeys(text + Keys.ENTER);
 	}
 
+	public int getRandomProduct() {
+		List<WebElement> products = driver.findElements(By.className("product-item"));
+		Random random = new Random();
+		int productIndex = random.nextInt(products.size());
+		return productIndex + 1;
+	}
+
 	public void clickOnProductCard(int productNumber) {
 		driver.findElement(By.cssSelector(".product-item:nth-child(" + productNumber + ")")).click();
 	}
@@ -32,8 +40,8 @@ public class Actions extends extentReportClass implements Constants {
 		driver.findElement(By.cssSelector("[option-label=" + productSize + "]")).click();
 	}
 
-	public void selectProductColor(ProductColorType productColor) {
-		driver.findElement(By.cssSelector("[option-label=" + productColor + "]")).click();
+	public void selectProductColor() {
+		driver.findElements(By.cssSelector(".swatch-option.color")).get(0).click();
 	}
 
 	public void enterProductQuantity(int productQuantity) {

@@ -27,18 +27,28 @@ public class Checkout extends Actions {
 	public void checkoutTest() throws InterruptedException {
 		extentTest = extentReport.createTest("Checkout functionality");
 		extentTest.log(Status.INFO, "Checkout Test functionality start");
-		
+
+		extentTest.log(Status.INFO, "Search for product \"Shirt\"");
 		action.typeInSearchInput("Shirt");
-		action.clickOnProductCard(1);
 		Thread.sleep(1000);
+		extentTest.log(Status.INFO, "Select a Random product");
+		int productNumber = action.getRandomProduct();
+		Thread.sleep(500);
+		action.clickOnProductCard(productNumber);
+
+		Thread.sleep(3000);
+		extentTest.log(Status.INFO, "Select product details");
 		action.selectProductSize(ProductSizeType.S);
-		action.selectProductColor(ProductColorType.Blue);
+		action.selectProductColor();
 		action.enterProductQuantity(3);
+		extentTest.log(Status.INFO, "Add product to the Cart");
 		action.clickOnAddToCartButton();
 		Thread.sleep(3000);
 		action.clickOnCartIcon();
+		extentTest.log(Status.INFO, "Click on Proceed To Checkout Button");
 		action.clickOnProceedToCheckoutButton();
 
+		extentTest.log(Status.INFO, "Fill out the shipping Info");
 		String email = action.generateEmail();
 		Thread.sleep(5000);
 		action.typeInEmailInputField(email);
@@ -53,19 +63,28 @@ public class Checkout extends Actions {
 		action.selectCountry("Brazil");
 		action.selectState(2);
 		action.typeInPhoneInputField("0599054533");
+		
+		extentTest.log(Status.INFO, "Select Shipping Methods");
 		action.selectShippingMethods(ShippingMethodsType.ko_unique_2);
 		Thread.sleep(5000);
 		action.clickOnNextButton();
+
+		extentTest.log(Status.INFO, "Review & Confirm Payments ");
 		Thread.sleep(5000);
 		action.clickOnPlaceOrderButton();
+
 		Thread.sleep(5000);
 		action.printOrderNumberInConsole();
-		assertion.checkThatCheckoutSuccess("Thank you for your purchase!", "We'll email you an order confirmation with details and tracking info.");
+
+		extentTest.log(Status.INFO, "Make assertion in the checkout result");
+		assertion.checkThatCheckoutSuccess("Thank you for your purchase!",
+				"We'll email you an order confirmation with details and tracking info.");
+		extentTest.log(Status.INFO, "Checkout Test functionality Success & End");
 	}
 
 	@AfterSuite
 	public void afterTest() {
-		//driver.close();
+		driver.close();
 	}
 
 }
