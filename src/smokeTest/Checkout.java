@@ -9,9 +9,10 @@ import com.aventstack.extentreports.Status;
 
 import pageObjects.Actions;
 import pageObjects.Assertions;
+import support.extentReportClass;
 
 @Listeners
-public class Checkout extends Actions {
+public class Checkout extends extentReportClass  {
 	Actions action;
 	Assertions assertion;
 
@@ -19,6 +20,8 @@ public class Checkout extends Actions {
 	public void initData() {
 		assertion = new Assertions();
 		action = new Actions();
+		
+		action.selectBrowser();
 		action.maximizeBrowser();
 		action.visitWebsite();
 	}
@@ -35,6 +38,7 @@ public class Checkout extends Actions {
 		int productNumber = action.getRandomProduct();
 		Thread.sleep(500);
 		action.clickOnProductCard(productNumber);
+
 
 		Thread.sleep(3000);
 		extentTest.log(Status.INFO, "Select product details");

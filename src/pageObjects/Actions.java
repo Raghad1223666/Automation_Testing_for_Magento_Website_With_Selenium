@@ -2,16 +2,56 @@ package pageObjects;
 
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import support.Constants;
-import support.extentReportClass;
 
-public class Actions extends extentReportClass implements Constants {
+public class Actions implements Constants {
+	static public WebDriver driver;
+	public int browserSelected;
+
+	public void selectBrowser() {
+		System.out.println("Please enter the browser you want to run the code on");
+		System.out.println("1 Chrome browser");
+		System.out.println("2 Edge browser");
+		System.out.println("3 Firefox browser");
+		System.out.println("Type 1 if you want chrome or 2 for Edge or 3 for Firefox , please");
+
+		try (Scanner input = new Scanner(System.in)) {
+			String browserSelected = input.next();
+
+			switch (browserSelected) {
+			case "2":
+				driver = new EdgeDriver();
+				break;
+
+			case "3":
+				driver = new FirefoxDriver();
+				break;
+			default:
+				driver = new ChromeDriver();
+				break;
+			}
+
+			if (browserSelected == "2") {
+				System.out.println("Running code in the: Edge browser");
+			} else if (browserSelected == "3") {
+				System.out.println("Running code in the: Firefox browser");
+			} else {
+				System.out.println("Running code in the: Chrome browser");
+			}
+
+		}
+	}
 
 	public void maximizeBrowser() {
 		driver.manage().window().maximize();

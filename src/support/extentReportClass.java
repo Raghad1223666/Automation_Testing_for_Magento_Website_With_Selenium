@@ -1,6 +1,7 @@
 package support;
 
 import java.io.File;
+import pageObjects.Actions;
 import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
@@ -15,7 +16,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
-public class extentReportClass implements ITestListener, Constants {
+public class extentReportClass extends Actions implements ITestListener {
 	public static ExtentReports extentReport = new ExtentReports();
 	public static ExtentSparkReporter htmlReporter = new ExtentSparkReporter("reports/finalReport.html");
 	public static ExtentTest extentTest;
