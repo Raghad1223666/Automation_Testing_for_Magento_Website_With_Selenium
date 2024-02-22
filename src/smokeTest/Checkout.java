@@ -12,7 +12,7 @@ import pageObjects.Assertions;
 import support.extentReportClass;
 
 @Listeners
-public class Checkout extends extentReportClass  {
+public class Checkout extends extentReportClass {
 	Actions action;
 	Assertions assertion;
 
@@ -20,7 +20,7 @@ public class Checkout extends extentReportClass  {
 	public void initData() {
 		assertion = new Assertions();
 		action = new Actions();
-		
+
 		action.selectBrowser();
 		action.maximizeBrowser();
 		action.visitWebsite();
@@ -38,7 +38,6 @@ public class Checkout extends extentReportClass  {
 		int productNumber = action.getRandomProduct();
 		Thread.sleep(500);
 		action.clickOnProductCard(productNumber);
-
 
 		Thread.sleep(3000);
 		extentTest.log(Status.INFO, "Select product details");
@@ -67,7 +66,7 @@ public class Checkout extends extentReportClass  {
 		action.selectCountry("Brazil");
 		action.selectState(2);
 		action.typeInPhoneInputField("0599054533");
-		
+
 		extentTest.log(Status.INFO, "Select Shipping Methods");
 		action.selectShippingMethods(ShippingMethodsType.ko_unique_2);
 		Thread.sleep(5000);
@@ -81,7 +80,8 @@ public class Checkout extends extentReportClass  {
 		action.printOrderNumberInConsole();
 
 		extentTest.log(Status.INFO, "Make assertion in the checkout result");
-		assertion.checkThatCheckoutSuccess("Thank you for your purchase!",
+		assertion.checkPageTitleContainValue("Thank you for your purchase!");
+		assertion.checkCheckoutMessageContainValue(
 				"We'll email you an order confirmation with details and tracking info.");
 		extentTest.log(Status.INFO, "Checkout Test functionality Success & End");
 	}

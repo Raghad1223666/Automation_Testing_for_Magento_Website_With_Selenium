@@ -99,7 +99,7 @@ public class Actions implements Constants {
 	public String generateEmail() {
 		Random random = new Random();
 		int number = random.nextInt(1000);
-		return "Raghad" + String.format("%03d", number) + "@gmail.com";
+		return "Raghad" + number + "@gmail.com";
 	}
 
 	public void typeInEmailInputField(String email) {
