@@ -39,14 +39,14 @@ public class Checkout extends extentReportClass {
 		Thread.sleep(500);
 		action.clickOnProductCard(productNumber);
 
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		extentTest.log(Status.INFO, "Select product details");
-		action.selectProductSize(ProductSizeType.S);
+		action.selectProductSize(ProductSizeType.XS);
 		action.selectProductColor();
 		action.enterProductQuantity(3);
 		extentTest.log(Status.INFO, "Add product to the Cart");
 		action.clickOnAddToCartButton();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		action.clickOnCartIcon();
 		extentTest.log(Status.INFO, "Click on Proceed To Checkout Button");
 		action.clickOnProceedToCheckoutButton();
@@ -88,7 +88,7 @@ public class Checkout extends extentReportClass {
 
 	@AfterSuite
 	public void afterTest() {
-		driver.close();
+		action.closeDriver();
 	}
 
 }

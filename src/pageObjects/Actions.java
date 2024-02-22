@@ -54,6 +54,10 @@ public class Actions implements Constants {
 	public void visitWebsite() {
 		driver.get("https://magento.softwaretestingboard.com/");
 	}
+	
+	public void closeDriver() {
+		driver.close();
+	}
 
 	public void typeInSearchInput(String text) {
 		driver.findElement(By.id("search")).sendKeys(text + Keys.ENTER);
